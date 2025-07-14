@@ -1,0 +1,54 @@
+<div *ngIf="showAddForm" class="form-box">
+    <h3>➕ إضافة موظف جديد</h3>
+  
+    <label>الاسم الأول:</label>
+    <input [(ngModel)]="newEmployee.firstName" required />
+  
+    <label>الاسم الأخير:</label>
+    <input [(ngModel)]="newEmployee.lastName" required />
+  
+    <label>رقم الهاتف:</label>
+    <input [(ngModel)]="newEmployee.phone" required />
+  
+    <label>الرقم القومي:</label>
+    <input [(ngModel)]="newEmployee.nationalId" required />
+  
+    <label>العمر:</label>
+    <input type="number" [(ngModel)]="newEmployee.age" required />
+  
+    <label>التوقيع (اختياري):</label>
+    <input type="file" (change)="onSignatureSelected($event)" />
+  
+    <button (click)="submitEmployee()">✅ حفظ</button>
+    <button (click)="showAddForm = false">❌ إلغاء</button>
+  
+    <p *ngIf="addMessage">{{ addMessage }}</p>
+  </div>
+  
+<div *ngIf="editMode" class="form-box">
+  <h3>✏️ تعديل موظف</h3>
+
+  <label>الاسم الأول:</label>
+  <input [(ngModel)]="employeeToEdit.firstName" required />
+
+  <label>الاسم الأخير:</label>
+  <input [(ngModel)]="employeeToEdit.lastName" required />
+
+  <label>رقم الهاتف:</label>
+  <input [(ngModel)]="employeeToEdit.phone" required />
+
+  <label>الرقم القومي:</label>
+  <input [(ngModel)]="employeeToEdit.nationalId" required />
+
+  <label>العمر:</label>
+  <input type="number" [(ngModel)]="employeeToEdit.age" required />
+
+  <label>تعديل التوقيع:</label>
+  <input type="file" (change)="onEditSignatureSelected($event)" />
+
+  <button (click)="submitEdit()">✅ حفظ التعديلات</button>
+  <button (click)="editMode = false">❌ إلغاء</button>
+
+  <p *ngIf="editMessage">{{ editMessage }}</p>
+</div>
+  

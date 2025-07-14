@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",  // Inherits compiler settings from base config
+  "compilerOptions": {
+    "outDir": "./out-tsc/spec", // Compiled spec files go here
+    "types": ["jasmine"]        // Includes Jasmine types for testing
+  },
+  "include": ["src/**/*.ts"]     // Includes all TypeScript files
+}

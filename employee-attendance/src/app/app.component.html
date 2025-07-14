@@ -1,0 +1,19 @@
+<nav>
+    <ul>
+      <li *ngIf="isLoggedIn() && getRole() === 'Admin'">
+        <a routerLink="/dashboard">لوحة الإدارة</a>
+      </li>
+      <li *ngIf="isLoggedIn() && getRole() === 'Employee'">
+        <a routerLink="/">تقارير الحضور</a>
+      </li>
+      <li *ngIf="!isLoggedIn()">
+        <a routerLink="/login">تسجيل الدخول</a>
+      </li>
+      <li *ngIf="isLoggedIn()">
+        <a href="#" (click)="logout()">تسجيل الخروج</a>
+      </li>
+    </ul>
+  </nav>
+  
+  <router-outlet></router-outlet>
+  

@@ -1,0 +1,40 @@
+<h2>📅 تقرير الحضور</h2>
+
+<div class="filter-section">
+  <label>
+    التاريخ:
+    <input type="date" [(ngModel)]="selectedDate" (change)="onDateChange(selectedDate)">
+  </label>
+</div>
+
+<table *ngIf="attendanceRecords.length > 0; else noData" class="attendance-table">
+  <thead>
+    <tr>
+      <th>الموظف</th>
+      <th>التاريخ</th>
+      <th>الحضور</th>
+      <th>الانصراف</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let record of attendanceRecords">
+      <td>{{ record.employeeName || 'أنا' }}</td>
+      <td>{{ record.date }}</td>
+      <td>{{ record.checkIn || '—' }}</td>
+      <td>{{ record.checkOut || '—' }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="role === 'Employee'" class="checkin-section">
+  <button (click)="checkIn()" [disabled]="checkInDisabled">تسجيل الحضور</button>
+  <p *ngIf="checkInMessage">{{ checkInMessage }}</p>
+</div>
+
+<ng-template #noData>
+  <p>لا توجد بيانات لعرضها.</p>
+</ng-template>
+
+<div class="logout-section">
+  <button (click)="logout()">🚪 تسجيل الخروج</button>
+</div>

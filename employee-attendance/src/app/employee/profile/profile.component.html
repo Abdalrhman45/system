@@ -1,0 +1,139 @@
+<h2>👤 ملفي الشخصي</h2>
+
+<div class="profile-box" *ngIf="user">
+  <p><strong>الاسم:</strong> {{ user.fullName || (user.firstName + ' ' + user.lastName) }}</p>
+  <p><strong>الهاتف:</strong> {{ user.phone }}</p>
+  <p><strong>الرقم القومي:</strong> {{ user.nationalId }}</p>
+  <p><strong>العمر:</strong> {{ user.age }}</p>
+
+  <div *ngIf="!user.signatureUrl">
+    <h4>🔏 أضف توقيعك</h4>
+    <input type="file" (change)="onSignatureSelected($event)" accept="image/*" />
+    <button (click)="uploadSignature()" [disabled]="!selectedSignature">رفع التوقيع</button>
+    <p *ngIf="uploadMessage">{{ uploadMessage }}</p>
+  </div>
+
+  <div *ngIf="user.signatureUrl">
+    <h4>✅ تم رفع التوقيع:</h4>
+    <img [src]="user.signatureUrl" alt="التوقيع" width="200" />
+  </div>
+</div>
+
+<hr />
+
+<h3>📆 الحضور الأسبوعي:</h3>
+<table *ngIf="attendance.length > 0; else noData">
+  <thead>
+    <tr>
+      <th>التاريخ</th>
+      <th>الحضور</th>
+      <th>الانصراف</th>
+      <th>عدد الساعات</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of attendance">
+      <td>{{ a.date | date }}</td>
+      <td>{{ a.checkIn | date:'shortTime' }}</td>
+      <td>{{ a.checkOut ? (a.checkOut | date:'shortTime') : '—' }}</td>
+      <td>{{ calcHours(a.checkIn, a.checkOut) }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noData>
+  <p>لا توجد سجلات حضور لهذا الأسبوع.</p>
+</ng-template>
+
+<!-- <h2>👤 ملفي الشخصي</h2>
+
+<div class="profile-box">
+  <p><strong>الاسم:</strong> {{ user.fullName }}</p>
+  <p><strong>الهاتف:</strong> {{ user.phone }}</p>
+  <p><strong>الرقم القومي:</strong> {{ user.nationalId }}</p>
+  <p><strong>العمر:</strong> {{ user.age }}</p>
+
+  <div *ngIf="user.signature">
+    <h4>✍️ التوقيع:</h4>
+    <img [src]="user.signature" alt="التوقيع" width="200" />
+  </div>
+
+  <div *ngIf="!user.signature">
+    <h4>🔏 أضف توقيعك</h4>
+    <input type="file" (change)="onSignatureSelected($event)" accept="image/*" />
+    <button (click)="uploadSignature()" [disabled]="!selectedSignature">رفع التوقيع</button>
+    <p *ngIf="uploadMessage">{{ uploadMessage }}</p>
+  </div>
+
+  <hr />
+
+  <h3>🕓 تسجيل الحضور اليومي</h3>
+  <button (click)="checkIn()" [disabled]="hasCheckedInToday">تسجيل الحضور</button>
+  <p *ngIf="checkInMessage" style="color: green;">{{ checkInMessage }}</p>
+</div>
+
+<hr />
+
+<h3>📆 الحضور الأسبوعي:</h3>
+<table *ngIf="attendance.length > 0; else noData">
+  <thead>
+    <tr>
+      <th>التاريخ</th>
+      <th>الحضور</th>
+      <th>الانصراف</th>
+      <th>عدد الساعات</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of attendance">
+      <td>{{ a.date | date }}</td>
+      <td>{{ a.checkIn | date:'shortTime' }}</td>
+      <td>{{ a.checkOut ? (a.checkOut | date:'shortTime') : '—' }}</td>
+      <td>{{ calcHours(a.checkIn, a.checkOut) }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noData>
+  <p>لا توجد سجلات حضور لهذا الأسبوع.</p>
+</ng-template>
+
+<!-- <h2>👤 ملفي الشخصي</h2>
+
+<div class="profile-box">
+  <p><strong>الاسم:</strong> {{ user.fullName }}</p>
+  <p><strong>الهاتف:</strong> {{ user.phone }}</p>
+  <p><strong>الرقم القومي:</strong> {{ user.nationalId }}</p>
+  <p><strong>العمر:</strong> {{ user.age }}</p>
+
+  <div *ngIf="!user.signature">
+    <h4>🔏 أضف توقيعك</h4>
+    <input type="file" (change)="onSignatureSelected($event)" accept="image/*" />
+    <button (click)="uploadSignature()" [disabled]="!selectedSignature">رفع التوقيع</button>
+    <p *ngIf="uploadMessage">{{ uploadMessage }}</p>
+  </div>
+  
+
+<h3>📆 الحضور الأسبوعي:</h3>
+<table *ngIf="attendance.length > 0; else noData">
+  <thead>
+    <tr>
+      <th>التاريخ</th>
+      <th>الحضور</th>
+      <th>الانصراف</th>
+      <th>عدد الساعات</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of attendance">
+      <td>{{ a.date | date }}</td>
+      <td>{{ a.checkIn | date:'shortTime' }}</td>
+      <td>{{ a.checkOut ? (a.checkOut | date:'shortTime') : '—' }}</td>
+      <td>{{ calcHours(a.checkIn, a.checkOut) }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noData>
+  <p>لا توجد سجلات حضور لهذا الأسبوع.</p>
+</ng-template> --> -->

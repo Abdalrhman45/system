@@ -1,0 +1,35 @@
+.filter-section {
+    margin-bottom: 1rem;
+  }
+  
+  .attendance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  .attendance-table th,
+  .attendance-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .logout-section {
+    margin-top: 2rem;
+    text-align: right;
+  
+    button {
+      background-color: #d9534f;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  
+    button:hover {
+      background-color: #c9302c;
+    }
+  }
+  
